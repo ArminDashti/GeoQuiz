@@ -1,5 +1,5 @@
 ---
-description: Default login account for every api-webui app (username armin)
+description: Default login account for every api-webui app (username admin)
 alwaysApply: true
 ---
 
@@ -9,11 +9,15 @@ For every **api** / **webui** app that has login (seed, migrate, bootstrap, demo
 
 | Field | Value |
 |-------|-------|
-| Username | `armin` |
+| Username | `admin` |
+| First name | `admin` |
+| Last name | `admin` |
+| Email | `admin@local.local` |
 | Password | `dopadopa123` |
 
 ## Requirements
 
 1. Ensure this account exists and can sign in successfully.
 2. Use these credentials when creating, seeding, or resetting the default login user.
-3. Do not invent a different default username/password for local or demo login unless the user explicitly overrides this rule.
+3. Keep `ADMIN_EMAIL` aligned with this email so admin promotion matches the seeded user.
+4. Do not invent a different default username/password for local or demo login unless the user explicitly overrides this rule.

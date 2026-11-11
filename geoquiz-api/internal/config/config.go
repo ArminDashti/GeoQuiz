@@ -56,7 +56,7 @@ func Load() Config {
 		DatabaseURL:   os.Getenv("DATABASE_URL"),
 		JWTSecret:     envOr("JWT_SECRET", "dev-jwt-secret-change-me"),
 		InviteCode:    envOr("INVITE_CODE", "armin"),
-		AdminEmail:    strings.ToLower(strings.TrimSpace(envOr("ADMIN_EMAIL", "armin@geoquiz.local"))),
+		AdminEmail:    strings.ToLower(strings.TrimSpace(envOr("ADMIN_EMAIL", "admin@local.local"))),
 		UploadDir:     envOr("UPLOAD_DIR", "uploads"),
 		MigrationsDir: envOr("MIGRATIONS_DIR", "migrations"),
 		GeoJSONPath:   envOr("COUNTRIES_GEOJSON", "data/countries.geojson"),

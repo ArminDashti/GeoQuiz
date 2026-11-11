@@ -31,7 +31,7 @@ services:
       DATABASE_URL: postgres://geoquiz:geoquiz@geoquiz-pgsql:5432/geoquiz?sslmode=disable
       JWT_SECRET: ${JWT_SECRET:-change-me-docker-dev-only}
       INVITE_CODE: ${INVITE_CODE:-armin}
-      ADMIN_EMAIL: ${ADMIN_EMAIL:-armin@geoquiz.local}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@local.local}
       UPLOAD_DIR: uploads
       COUNTRIES_GEOJSON: data/countries.geojson
       MIGRATIONS_DIR: migrations

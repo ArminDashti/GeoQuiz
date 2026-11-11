@@ -44,7 +44,7 @@ func main() {
 	if err := appdb.SeedInviteCode(ctx, sqlDB, cfg.InviteCode); err != nil {
 		log.Fatalf("seed invite code: %v", err)
 	}
-	if err := appdb.SeedBootstrapUser(ctx, sqlDB, "armin", "armin@geoquiz.local", "dopadopa123", "Armin", "Dashti"); err != nil {
+	if err := appdb.SeedBootstrapUser(ctx, sqlDB, "admin", "admin@local.local", "dopadopa123", "admin", "admin"); err != nil {
 		log.Fatalf("seed bootstrap user: %v", err)
 	}
 
