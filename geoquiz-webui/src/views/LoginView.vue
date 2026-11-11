@@ -44,7 +44,7 @@ async function onSubmit() {
   <div class="mx-auto flex min-h-full max-w-md items-center px-4 py-10">
     <Card class="w-full">
       <CardHeader>
-        <CardTitle>Log in</CardTitle>
+        <CardTitle class="text-2xl">Log in</CardTitle>
         <CardDescription>Use your username and password.</CardDescription>
       </CardHeader>
       <CardContent>
@@ -56,7 +56,7 @@ async function onSubmit() {
               type="text"
               autocomplete="username"
               required
-              class="w-full rounded-md border border-input bg-background px-3 py-2"
+              class="w-full rounded-sm border border-input bg-background px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </label>
           <label class="block space-y-1 text-sm">
@@ -66,7 +66,7 @@ async function onSubmit() {
               type="password"
               autocomplete="current-password"
               required
-              class="w-full rounded-md border border-input bg-background px-3 py-2"
+              class="w-full rounded-sm border border-input bg-background px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </label>
           <p v-if="errorMessage" class="text-sm text-red-600 dark:text-red-400">

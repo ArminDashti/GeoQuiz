@@ -2,19 +2,20 @@ import type { CountryGeoJSON } from '@/lib/api'
 
 export const REVEAL_MS = 5000
 
+/* Atlas wash — sea, land, coral pin, chart gold (no neon/purple kit) */
 const PALETTE = [
-  '#38bdf8',
-  '#22d3ee',
-  '#34d399',
-  '#a3e635',
-  '#fbbf24',
-  '#fb923c',
-  '#f87171',
-  '#e879f9',
-  '#a78bfa',
-  '#60a5fa',
-  '#2dd4bf',
-  '#f472b6',
+  '#3A7A8C',
+  '#5B9A8B',
+  '#2F6B7A',
+  '#7BA3AE',
+  '#C9922A',
+  '#E05A33',
+  '#D4784A',
+  '#4A8F7A',
+  '#6B8F9E',
+  '#A67C52',
+  '#3D9B8F',
+  '#B86B4A',
 ]
 
 export function colorForCountryId(id: number): string {

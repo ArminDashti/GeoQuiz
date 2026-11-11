@@ -1,0 +1,20 @@
+---
+description: Carto basemap tiles require an API key; use Esri Canvas or tile-free GeoJSON for Leaflet
+globs: geoquiz-webui/**/*.{vue,ts}
+alwaysApply: false
+---
+
+# Basemap tiles without Carto API keys
+
+**Goal:** Leaflet maps load a usable basemap (or intentional wash) without a third-party API key.
+
+**Failure pattern:** Carto CDN URLs (`*.basemaps.cartocdn.com/...`) return HTTP 200 PNG tiles that are only "API KEY REQUIRED" watermarks — looks like a broken map, not a network error.
+
+**Steps:**
+1. Prefer `geoquiz-webui/src/lib/basemap.ts` (`ESRI_LIGHT_GRAY` / `ESRI_DARK_GRAY`) for interactive maps.
+2. For decorative hero maps, skip raster tiles: sea-colored `.leaflet-container` background + country GeoJSON fills.
+3. Do not point production traffic at `tile.openstreetmap.org` from a cloud agent (OSMF blocks; `x-blocked`).
+
+**What didn't work:** Keeping legacy Carto `light_nolabels` / `dark_nolabels` URLs — they still 200, so failures are silent. OSM.org tiles are blocked in this environment.
+
+**Verified:** Esri Canvas tile HEAD returned 200 image/jpeg; Carto returned watermark PNGs; OSM returned `x-blocked`.

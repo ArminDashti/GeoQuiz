@@ -1,43 +1,25 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref, shallowRef } from 'vue'
-import L, { type GeoJSON as LeafletGeoJSON, type Map as LeafletMap, type TileLayer } from 'leaflet'
+import L, { type GeoJSON as LeafletGeoJSON, type Map as LeafletMap } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { fetchCountriesGeoJSON } from '@/lib/api'
-import { withCountryColors } from '@/lib/countryColors'
-import { getTheme, type Theme } from '@/lib/theme'
+import { colorForCountryId } from '@/lib/countryColors'
 
 const mapContainer = ref<HTMLDivElement | null>(null)
 const mapRef = shallowRef<LeafletMap | null>(null)
-const tileRef = shallowRef<TileLayer | null>(null)
 const countriesLayerRef = shallowRef<LeafletGeoJSON | null>(null)
 
-const LIGHT_TILES = 'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png'
-const DARK_TILES = 'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png'
-
 const STYLE = {
-  weight: 0.6,
-  opacity: 0.25,
-  color: '#0f172a',
-  fillOpacity: 0.55,
+  weight: 0.55,
+  opacity: 0.4,
+  color: '#1C2B36',
+  fillOpacity: 0.58,
 }
 
-function tileUrl(theme: Theme): string {
-  return theme === 'dark' ? DARK_TILES : LIGHT_TILES
-}
-
-function syncTiles(theme: Theme) {
-  const map = mapRef.value
-  if (!map) return
-
-  if (tileRef.value) {
-    map.removeLayer(tileRef.value)
-  }
-
-  tileRef.value = L.tileLayer(tileUrl(theme), {
-    attribution: '',
-    subdomains: 'abcd',
-    maxZoom: 6,
-  }).addTo(map)
+async function loadWorld(): Promise<GeoJSON.FeatureCollection> {
+  const base = import.meta.env.BASE_URL || '/'
+  const res = await fetch(`${base}world-110m.geojson`)
+  if (!res.ok) throw new Error(`Hero map data failed (${res.status})`)
+  return (await res.json()) as GeoJSON.FeatureCollection
 }
 
 async function initMap() {
@@ -59,19 +41,21 @@ async function initMap() {
   })
 
   mapRef.value = map
-  syncTiles(getTheme())
 
   try {
-    const geojson = withCountryColors(await fetchCountriesGeoJSON())
+    const geojson = await loadWorld()
     countriesLayerRef.value = L.geoJSON(geojson as GeoJSON.GeoJsonObject, {
-      style: (feature) => ({
-        ...STYLE,
-        fillColor: String(feature?.properties?.color ?? '#94a3b8'),
-      }),
+      style: (feature) => {
+        const id = Number(feature?.id ?? feature?.properties?.id ?? 0)
+        return {
+          ...STYLE,
+          fillColor: colorForCountryId(id),
+        }
+      },
       interactive: false,
     }).addTo(map)
   } catch {
-    // Decorative only — leave basemap if countries fail to load.
+    // Decorative only — sea wash still shows if data fails to load.
   }
 
   requestAnimationFrame(() => {
@@ -79,34 +63,13 @@ async function initMap() {
   })
 }
 
-function onThemeStorage(event: StorageEvent) {
-  if (event.key !== 'geoquiz-theme') return
-  syncTiles(getTheme())
-}
-
-function onDocumentClassChange() {
-  syncTiles(getTheme())
-}
-
-let observer: MutationObserver | null = null
-
 onMounted(() => {
   void initMap()
-  window.addEventListener('storage', onThemeStorage)
-  observer = new MutationObserver(onDocumentClassChange)
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['class'],
-  })
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener('storage', onThemeStorage)
-  observer?.disconnect()
-  observer = null
   mapRef.value?.remove()
   mapRef.value = null
-  tileRef.value = null
   countriesLayerRef.value = null
 })
 </script>

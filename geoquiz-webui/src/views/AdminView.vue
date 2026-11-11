@@ -49,7 +49,7 @@ onMounted(() => {
   <div class="mx-auto max-w-md space-y-4 px-4 py-10">
     <Card>
       <CardHeader>
-        <CardTitle>Admin</CardTitle>
+        <CardTitle class="text-2xl">Admin</CardTitle>
         <CardDescription>Manage the signup invite code.</CardDescription>
       </CardHeader>
       <CardContent class="space-y-3">

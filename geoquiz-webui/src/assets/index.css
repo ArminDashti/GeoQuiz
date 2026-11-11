@@ -4,40 +4,54 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    --primary: 199 89% 38%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222 47% 11%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 199 89% 38%;
-    --radius: 0.5rem;
+    /* Chart paper — cool mint-grey, not cream */
+    --background: 156 22% 93%;
+    --foreground: 206 31% 16%;
+    --card: 150 28% 97%;
+    --card-foreground: 206 31% 16%;
+    /* Map-pin coral */
+    --primary: 12 74% 54%;
+    --primary-foreground: 0 0% 100%;
+    /* Sea wash */
+    --secondary: 193 28% 88%;
+    --secondary-foreground: 206 31% 16%;
+    --muted: 156 14% 90%;
+    --muted-foreground: 206 15% 38%;
+    --accent: 193 32% 90%;
+    --accent-foreground: 206 31% 16%;
+    --border: 200 18% 80%;
+    --input: 200 18% 80%;
+    --ring: 12 74% 54%;
+    --radius: 0.35rem;
+    --sea: 193 41% 39%;
+    --sea-deep: 205 42% 18%;
+    --gold: 40 68% 47%;
+    --chart-ink: 206 31% 16%;
+    color-scheme: light;
   }
 
   .dark {
-    --background: 222 47% 7%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 10%;
-    --card-foreground: 210 40% 98%;
-    --primary: 199 89% 48%;
-    --primary-foreground: 222 47% 7%;
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 217 33% 17%;
-    --accent-foreground: 210 40% 98%;
-    --border: 217 33% 20%;
-    --input: 217 33% 20%;
-    --ring: 199 89% 48%;
+    /* Bathymetry */
+    --background: 205 42% 8%;
+    --foreground: 195 18% 92%;
+    --card: 205 35% 12%;
+    --card-foreground: 195 18% 92%;
+    --primary: 12 80% 60%;
+    --primary-foreground: 205 42% 8%;
+    --secondary: 200 25% 16%;
+    --secondary-foreground: 195 18% 92%;
+    --muted: 200 22% 14%;
+    --muted-foreground: 195 12% 65%;
+    --accent: 200 25% 16%;
+    --accent-foreground: 195 18% 92%;
+    --border: 200 20% 20%;
+    --input: 200 20% 20%;
+    --ring: 12 80% 60%;
+    --sea: 193 45% 52%;
+    --sea-deep: 205 42% 8%;
+    --gold: 42 75% 55%;
+    --chart-ink: 195 18% 92%;
+    color-scheme: dark;
   }
 
   * {
@@ -51,14 +65,64 @@
     margin: 0;
   }
 
+  html {
+    accent-color: hsl(var(--primary));
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
+    font-family: Manrope, ui-sans-serif, system-ui, sans-serif;
+    background-image:
+      radial-gradient(ellipse 120% 80% at 10% -20%, hsl(var(--sea) / 0.18), transparent 55%),
+      radial-gradient(ellipse 90% 60% at 100% 0%, hsl(var(--primary) / 0.08), transparent 50%),
+      linear-gradient(
+        180deg,
+        hsl(var(--background)) 0%,
+        hsl(var(--background)) 100%
+      );
+    background-attachment: fixed;
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(ellipse 100% 70% at 15% -10%, hsl(var(--sea) / 0.22), transparent 55%),
+      radial-gradient(ellipse 80% 50% at 95% 10%, hsl(var(--primary) / 0.12), transparent 45%),
+      linear-gradient(180deg, hsl(205 42% 7%) 0%, hsl(var(--background)) 40%);
+  }
+
+  ::selection {
+    background: hsl(var(--sea) / 0.35);
+    color: hsl(var(--foreground));
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: Syne, Manrope, ui-sans-serif, system-ui, sans-serif;
   }
 }
 
 @layer utilities {
   .home-page .leaflet-container {
-    background: transparent;
     font: inherit;
+    background: hsl(193 35% 72%);
+  }
+
+  .dark .home-page .leaflet-container {
+    background: hsl(205 45% 14%);
+  }
+
+  .atlas-grid {
+    background-image:
+      linear-gradient(hsl(var(--foreground) / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--foreground) / 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .dark .atlas-grid {
+    background-image:
+      linear-gradient(hsl(var(--foreground) / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--foreground) / 0.05) 1px, transparent 1px);
   }
 }

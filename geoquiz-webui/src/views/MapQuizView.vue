@@ -134,8 +134,8 @@ onMounted(() => {
 
 <template>
   <div class="flex h-full min-h-0 flex-col">
-    <div class="border-b border-border px-4 py-3">
-      <h1 class="text-lg font-semibold">Map quiz</h1>
+    <div class="border-b border-border/80 bg-background/70 px-4 py-3 backdrop-blur-sm">
+      <h1 class="font-display text-xl font-bold tracking-tight">Map quiz</h1>
       <p class="text-sm text-muted-foreground">
         Round {{ Math.min(round, TOTAL_ROUNDS) }} / {{ TOTAL_ROUNDS }} · Score
         {{ correctCount }}

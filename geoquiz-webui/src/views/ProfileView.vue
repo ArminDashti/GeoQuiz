@@ -76,7 +76,7 @@ watch(
   <div class="mx-auto max-w-2xl space-y-4 px-4 py-10">
     <Card>
       <CardHeader>
-        <CardTitle>Profile</CardTitle>
+        <CardTitle class="text-2xl">Profile</CardTitle>
         <CardDescription>Public scores for this user.</CardDescription>
       </CardHeader>
       <CardContent class="space-y-4">
