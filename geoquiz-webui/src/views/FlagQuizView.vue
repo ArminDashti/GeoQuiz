@@ -107,8 +107,8 @@ onMounted(() => {
 <template>
   <div class="mx-auto max-w-2xl space-y-4 px-4 py-8">
     <div>
-      <h1 class="text-2xl font-semibold tracking-tight">Flag quiz</h1>
-      <p class="text-sm text-muted-foreground">
+      <h1 class="font-display text-3xl font-bold tracking-tight">Flag quiz</h1>
+      <p class="mt-1 text-sm text-muted-foreground">
         Round {{ Math.min(round, TOTAL_ROUNDS) }} / {{ TOTAL_ROUNDS }} · Score
         {{ correctCount }}
       </p>
@@ -136,11 +136,11 @@ onMounted(() => {
         <CardDescription>Choose one of the four options.</CardDescription>
       </CardHeader>
       <CardContent class="space-y-4">
-        <div class="flex justify-center rounded-md border border-border bg-muted/40 p-6">
+        <div class="flex justify-center rounded-sm border border-border bg-secondary/50 p-8">
           <img
             :src="flagUrl(target.iso)"
             :alt="`Flag of ${target.name}`"
-            class="max-h-40 w-auto rounded shadow"
+            class="max-h-40 w-auto rounded-sm border border-border/60 shadow-sm"
           />
         </div>
         <div class="grid gap-2 sm:grid-cols-2">

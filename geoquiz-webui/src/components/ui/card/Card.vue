@@ -7,7 +7,14 @@ defineProps<{
 </script>
 
 <template>
-  <div :class="cn('rounded-lg border bg-card text-card-foreground shadow-sm', $props.class)">
+  <div
+    :class="
+      cn(
+        'rounded-sm border border-border bg-card/90 text-card-foreground shadow-none',
+        $props.class,
+      )
+    "
+  >
     <slot />
   </div>
 </template>

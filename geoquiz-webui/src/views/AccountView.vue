@@ -113,7 +113,7 @@ async function onDeleteAccount() {
   <div class="mx-auto max-w-xl space-y-4 px-4 py-10">
     <Card>
       <CardHeader>
-        <CardTitle>Account</CardTitle>
+        <CardTitle class="text-2xl">Account</CardTitle>
         <CardDescription>Update your profile, avatar, and password.</CardDescription>
       </CardHeader>
       <CardContent class="space-y-4">

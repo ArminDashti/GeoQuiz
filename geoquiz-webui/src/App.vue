@@ -14,8 +14,8 @@ const theme = ref<Theme>(getTheme())
 const avatarUrl = computed(() => resolveAssetUrl(user.value?.avatar_url))
 
 const navLinkClass =
-  'rounded-md px-2.5 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground'
-const navLinkActiveClass = 'bg-muted text-foreground'
+  'rounded-sm px-2.5 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-secondary/80 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
+const navLinkActiveClass = 'bg-secondary text-foreground'
 
 function syncTheme() {
   theme.value = getTheme()
@@ -47,13 +47,13 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="flex h-full w-full flex-col bg-background text-foreground">
+  <div class="flex h-full w-full flex-col bg-transparent text-foreground">
     <header
-      class="sticky top-0 z-40 flex shrink-0 items-center justify-between gap-4 border-b border-border/80 bg-background/95 px-4 py-3.5 backdrop-blur supports-[backdrop-filter]:bg-background/80"
+      class="sticky top-0 z-40 flex shrink-0 items-center justify-between gap-4 border-b border-border/70 bg-background/80 px-4 py-3 backdrop-blur-md supports-[backdrop-filter]:bg-background/65"
     >
       <nav class="flex min-w-0 flex-wrap items-center gap-1 sm:gap-1.5" aria-label="Main">
         <RouterLink
-          class="mr-2 shrink-0 text-base font-semibold tracking-tight text-foreground"
+          class="font-display mr-2 shrink-0 text-lg font-bold tracking-tight text-foreground"
           to="/"
         >
           Geoquiz

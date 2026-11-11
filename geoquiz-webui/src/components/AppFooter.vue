@@ -1,9 +1,9 @@
 <template>
   <footer
-    class="grid shrink-0 grid-cols-[auto_1fr_auto] items-center gap-3 border-t border-border px-5 py-3"
+    class="grid shrink-0 grid-cols-[auto_1fr_auto] items-center gap-3 border-t border-border/80 bg-background/60 px-5 py-3 backdrop-blur-sm"
   >
     <a
-      class="inline-flex h-10 w-10 items-center justify-center justify-self-start text-foreground hover:text-primary"
+      class="inline-flex h-10 w-10 items-center justify-center justify-self-start text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       href="https://github.com/ArminDashti"
       target="_blank"
       rel="noopener noreferrer"

@@ -47,9 +47,9 @@ function goToMapQuiz() {
     <LeafletWorldMap class="absolute inset-0" @ready="onReady" @error="onError" />
 
     <div class="pointer-events-none absolute left-4 top-4 z-10 max-w-sm">
-      <Card class="pointer-events-auto bg-white/95 backdrop-blur">
+      <Card class="pointer-events-auto bg-card/95 backdrop-blur-md">
         <CardHeader>
-          <CardTitle>Geoquiz</CardTitle>
+          <CardTitle class="text-xl">Geoquiz</CardTitle>
           <CardDescription>{{ status }}</CardDescription>
         </CardHeader>
         <CardContent class="space-y-3">

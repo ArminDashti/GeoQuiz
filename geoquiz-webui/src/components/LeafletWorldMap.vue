@@ -3,6 +3,7 @@ import { onBeforeUnmount, onMounted, ref, shallowRef } from 'vue'
 import L, { type GeoJSON as LeafletGeoJSON, type Layer, type Map as LeafletMap, type Path } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { fetchCountriesGeoJSON } from '@/lib/api'
+import { ESRI_ATTRIBUTION, ESRI_LIGHT_GRAY } from '@/lib/basemap'
 import {
   REVEAL_MS,
   countryNameFromProperties,
@@ -97,9 +98,8 @@ async function initMap() {
   L.control.zoom({ position: 'topright' }).addTo(map)
   L.control.attribution({ position: 'bottomright', prefix: false }).addTo(map)
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: 'abcd',
+  L.tileLayer(ESRI_LIGHT_GRAY, {
+    attribution: ESRI_ATTRIBUTION,
     maxZoom: 8,
   }).addTo(map)
 

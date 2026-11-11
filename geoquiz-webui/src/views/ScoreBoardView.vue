@@ -71,7 +71,7 @@ onMounted(load)
 <template>
   <div class="mx-auto max-w-4xl space-y-6 px-4 py-8">
     <div>
-      <h1 class="text-2xl font-semibold tracking-tight">Score board</h1>
+      <h1 class="font-display text-3xl font-bold tracking-tight">Score board</h1>
       <p class="text-sm text-muted-foreground">
         One row per user (totals aggregated), ranked by fair score (Wilson)
       </p>
